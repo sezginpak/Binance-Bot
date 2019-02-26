@@ -1,0 +1,3 @@
+from binance import client
+
+x = client.Client(api_key="IrK2nevojlwdR04Xs0JIDcRhmDnEzwlz9doaAlzFbMws30iPmqglmWhZPV2jAHGf", api_secret="cog5SNOysSYiuPiC676Z5gtrb7oyPGrm3oa8QKRI4CjpfdsOmTjKq6WcxcrK9e7Y")
