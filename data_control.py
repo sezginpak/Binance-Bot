@@ -1,3 +1,3 @@
 import pickledb
 
-db = pickledb.load('cache', auto_dump=True)
+db = pickledb.load('cache/error', auto_dump=True)

@@ -1,6 +1,7 @@
-import menu
+from menu import menu
 
-x=menu.menu()
-a=x.anamenu()
+a=menu.anamenu()
 if a=="1":
-    menu.menu.price()
+    menu.price()
+elif a=="2":
+    menu.trade()
