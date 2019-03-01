@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from config import x, y
+import DovizKurlari
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -52,14 +54,14 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         #MainWindow.setStatusBar(self.statusbar)
-        self.action_XXXBTC = QtWidgets.QAction(MainWindow)
-        self.action_XXXBTC.setObjectName("action_XXXBTC")
-        self.action_XXXETH = QtWidgets.QAction(MainWindow)
-        self.action_XXXETH.setObjectName("action_XXXETH")
-        self.action_XXXBNB = QtWidgets.QAction(MainWindow)
-        self.action_XXXBNB.setObjectName("action_XXXBNB")
-        self.action_Cache_Reset = QtWidgets.QAction(MainWindow)
-        self.action_Cache_Reset.setObjectName("action_Cache_Reset")
+        # self.action_XXXBTC = QtWidgets.QAction(MainWindow)
+        # self.action_XXXBTC.setObjectName("action_XXXBTC")
+        # self.action_XXXETH = QtWidgets.QAction(MainWindow)
+        # self.action_XXXETH.setObjectName("action_XXXETH")
+        # self.action_XXXBNB = QtWidgets.QAction(MainWindow)
+        # self.action_XXXBNB.setObjectName("action_XXXBNB")
+        # self.action_Cache_Reset = QtWidgets.QAction(MainWindow)
+        # self.action_Cache_Reset.setObjectName("action_Cache_Reset")
 
         self.retranslateUi(MainWindow)
         self.infobutton.clicked.connect(self.infocoin_coin)
@@ -67,18 +69,33 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def infocoin_coin(self):
-        a=self.inputcoininfo.text()
-        b=x.get_symbol_ticker(symbol=a)
-        self.label_2.setText(a+" : " + b["price"])
+        while True:
+            a=self.inputcoininfo.text()
+            i=False
+            if True==a.endswith('TL'):
+                turkish_liras=y.convert(1, 'USD', 'TRY')
+                a=a.replace("TL","")
+
+                a=a+"USDT"
+                print(a)
+            try:
+                b=x.get_symbol_ticker(symbol=a)
+            except:
+                self.label_2.setText("Error!!")
+                i=True
+            if i==False:
+                self.label_2.setText(a+" : " + (str(float(b["price"])*float(turkish_liras))))
+            break
+
 
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Binance Bot"))
         self.infobutton.setText(_translate("MainWindow", "Coin Price"))
         self.maintext.setText(_translate("MainWindow", "Binance Bot"))
         self.label.setText(_translate("MainWindow", "Example: HOTBTC"))
-        self.action_XXXBTC.setText(_translate("MainWindow", " XXXBTC"))
-        self.action_XXXETH.setText(_translate("MainWindow", " XXXETH"))
-        self.action_XXXBNB.setText(_translate("MainWindow", " XXXBNB"))
-        self.action_Cache_Reset.setText(_translate("MainWindow", " Cache Reset"))
+        # self.action_XXXBTC.setText(_translate("MainWindow", " XXXBTC"))
+        # self.action_XXXETH.setText(_translate("MainWindow", " XXXETH"))
+        # self.action_XXXBNB.setText(_translate("MainWindow", " XXXBNB"))
+        # self.action_Cache_Reset.setText(_translate("MainWindow", " Cache Reset"))
