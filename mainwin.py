@@ -190,10 +190,9 @@ class Ui_MainWindow(object):
                 import time
                 ti=time.time()
                 self.label_2.setText("Error!!")
-                # ther=threading.Thread(target=time.sleep, args=(5,))
                 executor.submit(threading.Timer(3, self.error_notification).start())
 
-                # threading.Timer(5, self.error_notification).start()
+                threading.Timer(3, self.error_notification).start()
 
                 print(threading.active_count())
                 i=True
@@ -211,16 +210,21 @@ class Ui_MainWindow(object):
         self.i=True
         self.infobutton.setText("Coin Price")
         self.infobutton.clicked.connect(self.infocoin_coin2)
+        self.inputcoininfo.setEnabled(True)
+
     def coin_price_reflesh(self, i=False):
         self.i=i
         threading.Thread(target=self.coin_price_reflesh2).start()
         self.infobutton.setText("Stop")
         self.infobutton.clicked.connect(self.coin_price_reflesh_stop)
+        self.inputcoininfo.setEnabled(False)
     def coin_price_reflesh2(self):
+        import time
         while self.i==False:
             a=self.inputcoininfo.text()
             b=x.get_symbol_ticker(symbol=a)
             self.label_2.setText(a+" : " + (b["price"]))
+            threading.Thread(target=time.sleep(0.2)).start()
 
 
     def retranslateUi(self, MainWindow):
