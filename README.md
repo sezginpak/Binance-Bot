@@ -20,7 +20,7 @@ Required;
 <a href="https://ibb.co/vXxBd5X"><img src="https://i.ibb.co/nPs012P/Ekran-Resmi-2019-03-02-12-03-48.png" alt="Ekran-Resmi-2019-03-02-12-03-48" border="0" align="right" height="236" width="316"></a>
 Copying files<br>
 
-<code>git clone https://github.com/sezginpak/Binance-Bot</code><br><br>Go to the directory where the file is located<br>
+<code>git clone https://github.com/sezginpak/Binance-Bot.git</code><br><br>Go to the directory where the file is located<br>
 
 <code>cd Binance-Bot</code><br><br>Install requirements libraries<br>
 <code>pip install -r requirements.txt</code><br><br>
@@ -33,5 +33,5 @@ Check your directory<br>
 <code> ~/Binance-Bot/</code><br><br>
 Run<br>
 <code>python app.py</code><br><br>
-is Running...
+is Running...<img src=https://forthebadge.com/images/badges/made-with-python.svg align=right><img>
 Thanks... :)
