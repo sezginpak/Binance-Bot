@@ -1,5 +1,5 @@
 # Binance Simple App
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5b0ca323976d4d3ebe485685138dbaf0)](https://www.codacy.com/app/sezginpaksoy/Binance-Bot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sezginpak/Binance-Bot&amp;utm_campaign=Badge_Grade)
 Binance API Desktop Simple App
 
 <img src="https://blockexplorer.com/news/wp-content/uploads/2017/11/binance-cryptocurrency-exchange-logo.png" align="right"
@@ -20,7 +20,7 @@ Required;
 <a href="https://ibb.co/vXxBd5X"><img src="https://i.ibb.co/nPs012P/Ekran-Resmi-2019-03-02-12-03-48.png" alt="Ekran-Resmi-2019-03-02-12-03-48" border="0" align="right" height="236" width="316"></a>
 Copying files<br>
 
-<code>git clone https://github.com/sezginpak/Binance-Bot.git</code><br><br>Go to the directory where the file is located<br>
+`git clone https://github.com/sezginpak/Binance-Bot.git`<br><br>Go to the directory where the file is located<br>
 
 <code>cd Binance-Bot</code><br><br>Install requirements libraries<br>
 <code>pip install -r requirements.txt</code><br><br>

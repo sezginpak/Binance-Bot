@@ -187,8 +187,6 @@ class Ui_MainWindow(object):
             try:
                 b=x.get_symbol_ticker(symbol=a)
             except:
-                import time
-                ti=time.time()
                 self.label_2.setText("Error!!")
                 executor.submit(threading.Timer(3, self.error_notification).start())
 
