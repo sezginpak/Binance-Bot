@@ -1,5 +1,5 @@
 # Binance Simple App
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5b0ca323976d4d3ebe485685138dbaf0)](https://www.codacy.com/app/sezginpaksoy/Binance-Bot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sezginpak/Binance-Bot&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5b0ca323976d4d3ebe485685138dbaf0)](https://www.codacy.com/app/sezginpaksoy/Binance-Bot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sezginpak/Binance-Bot&amp;utm_campaign=Badge_Grade)<br>
 Binance API Desktop Simple App
 
 <img src="https://blockexplorer.com/news/wp-content/uploads/2017/11/binance-cryptocurrency-exchange-logo.png" align="right"
