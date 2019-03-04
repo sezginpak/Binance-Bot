@@ -6,15 +6,13 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-import threading
+
 from PyQt5 import QtCore, QtGui, QtWidgets
-from config import x, y
-from concurrent.futures import ThreadPoolExecutor
-executor=ThreadPoolExecutor(max_workers=5)
+from tool_func import func
 
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(func):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(400, 275)
@@ -22,6 +20,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setGeometry(QtCore.QRect(0, 0, 401, 231))
+
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -152,6 +151,7 @@ class Ui_MainWindow(object):
         self.reset_button_settings.setGeometry(QtCore.QRect(240, 90, 121, 32))
         self.reset_button_settings.setObjectName("reset_button_settings")
 
+
         self.tabWidget.addTab(self.tab3, "")
         #MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -166,63 +166,9 @@ class Ui_MainWindow(object):
         self.tabWidget.setCurrentIndex(0)
         self.infobutton.clicked.connect(self.infocoin_coin2)
         self.infobutton_trade.clicked.connect(self.coin_price_trade.clear)
+        self.configure_button_settings.clicked.connect(self.api_key_settings_configure)
+        self.reset_button_settings.clicked.connect(self.api_key_settings_reset)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-    def infocoin_coin2(self):
-        a=self.infobutton.text()
-        if a=="Stop":
-            self.label_2.setText("Error! Please Stop...")
-        else:
-            self.infocoin_coin()
-    def infocoin_coin(self):
-        self.infobutton.setDown(True)
-        while True:
-            a=self.inputcoininfo.text()
-            i=False
-            c=a
-            if True==a.endswith('TL'):
-                turkish_liras=y.convert(1, 'USD', 'TRY')
-                a=a.replace("TL","")
-                a=a+"USDT"
-            try:
-                b=x.get_symbol_ticker(symbol=a)
-            except:
-                self.label_2.setText("Error!!")
-                executor.submit(threading.Timer(3, self.error_notification).start())
-
-                threading.Timer(3, self.error_notification).start()
-
-                print(threading.active_count())
-                i=True
-            if i==False:
-                if True==c.endswith('TL'):
-                    self.label_2.setText(c+" : " + (str(float(b["price"])*float(turkish_liras))))
-                else:
-                    self.label_2.setText(c+" : " + (b["price"]))
-                    self.coin_price_reflesh()
-            break
-
-    def error_notification(self):
-        self.label_2.setText("")
-    def coin_price_reflesh_stop(self):
-        self.i=True
-        self.infobutton.setText("Coin Price")
-        self.infobutton.clicked.connect(self.infocoin_coin2)
-        self.inputcoininfo.setEnabled(True)
-
-    def coin_price_reflesh(self, i=False):
-        self.i=i
-        threading.Thread(target=self.coin_price_reflesh2).start()
-        self.infobutton.setText("Stop")
-        self.infobutton.clicked.connect(self.coin_price_reflesh_stop)
-        self.inputcoininfo.setEnabled(False)
-    def coin_price_reflesh2(self):
-        import time
-        while self.i==False:
-            a=self.inputcoininfo.text()
-            b=x.get_symbol_ticker(symbol=a)
-            self.label_2.setText(a+" : " + (b["price"]))
-            threading.Thread(target=time.sleep(0.2)).start()
 
 
     def retranslateUi(self, MainWindow):
