@@ -164,10 +164,11 @@ class Ui_MainWindow(func):
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
-        self.infobutton.clicked.connect(self.infocoin_coin2)
+        self.infobutton.clicked.connect(self.info_price)
         self.infobutton_trade.clicked.connect(self.coin_price_trade.clear)
         self.configure_button_settings.clicked.connect(self.api_key_settings_configure)
         self.reset_button_settings.clicked.connect(self.api_key_settings_reset)
+        self.input_coin_trade.end
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
