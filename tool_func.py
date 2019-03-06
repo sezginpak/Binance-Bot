@@ -1,104 +1,84 @@
-import threading
+from PyQt5.Qt import QThread
 import time
-from concurrent.futures import ThreadPoolExecutor
+from PyQt5.QtCore import pyqtSignal
+import threading
+# from concurrent.futures import ThreadPoolExecutor
 import pickledb
-executor=ThreadPoolExecutor(max_workers=5)
+# executor=ThreadPoolExecutor(max_workers=5)
 
 # from mainwin import Ui_MainWindow
 
-db=pickledb.load('debug/config_api.db', auto_dump=True)
-
+# db=pickledb.load('debug/config_api.db', auto_dump=True)
+from config import db
 
 class func(object):
-
-    def infocoin_coin2(self, buton, label):
-        a=buton.text()
-        if a=="Stop":
-            label.setText("Error! Please Stop...")
-        else:
-            self.infocoin_coin(i_buton=self.infobutton, label=self.label_2, input_coin=self.inputcoininfo)
-
+    def start_func(self):
+        self.db=db
+        for i in self.db.lgetall('coin_parity'):
+            self.coin_price_combo.addItem(i)
     def info_price(self):
-        self.infocoin_coin(self.infobutton,self.label_2, self.inputcoininfo)
-    def infocoin_coin(self, i_buton, label, input_coin):
+        try:
+            self.text=self.coin_price_combo.currentText()
+            self.text=self.text.upper()
+        except:
+            pass
+        def response_price(label, combo):
+            from config import x
+            # try:
+            x.get_symbol_ticker(symbol=self.text)
+            response_price_print(self.coin_price_combo.currentText(), 0, 0)
+                # QtCore.QMetaObject.invokeMethod(combo, "setEnabled", QtCore.Qt.QueuedConnection, QtCore.Q_ARG(bool, False))
+            # except:
+            #     print('hataa')
+            #     self.cont_res_while=False
 
-        i_buton.setDown(True)
-        while True:
-            if db.get('api_key')==False:
-                label.setText('Error Api Not Found!!')
-                break
-            else:
-                from config import x, y
-                self.control()
-            a=input_coin.text()
-            b=x.get_symbol_ticker(symbol=a)
-            label.setText(a+" : " + (b["price"]))
-            self.coin_price_reflesh(button=self.infobutton,t_func=self.coin_price_info_reflesh2, clicked_connect_func=self.coin_price_info_reflesh_stop, button_text=self.infobutton, input_line=self.inputcoininfo)
-            break
+        def response_price_print(text, label, combo):
+            from config import x
+            if label==0 and combo==0:
+                self.infobutton.setText("Stop")
 
-    def error_notification(self):
-        self.label_2.setText("")
-    def coin_price_info_reflesh_stop(self):
-        self.i=True
-        self.infobutton.setText("Coin Price")
-        self.infobutton.clicked.connect(self.infocoin_coin)
-        self.inputcoininfo.setEnabled(True)
+                while self.cont_res_while==True:
+                    try:
+                        res=x.get_symbol_ticker(symbol=text)
+                        self.label_2.setText(text+" : " + res['price'])
+                    except:
+                        print("hata")
+            elif label==1 and combo==1:
+                pass
 
-    def coin_price_reflesh(self, i=False, button=None, button_text="", t_func=None, clicked_connect_func=None, input_line=None):
-        self.i=i
-        threading.Thread(target=t_func).start()
-        button.setText("Stop")
-        button_text.clicked.connect(clicked_connect_func)
-        input_line.setEnabled(False)
-    def coin_price_info_reflesh2(self):
-        from config import x
-        while self.i==False:
-            a=self.inputcoininfo.text()
-            b=x.get_symbol_ticker(symbol=a)
-            self.label_2.setText(a+" : " + (b["price"]))
-            threading.Thread(target=time.sleep(0.2)).start()
-    def api_key_settings_configure(self):
-        while True:
-            line_text=self.input_api_key_settings.text()
-            line_secret_text=self.input_api_secret_key_settings.text()
-            if line_text=="" or line_secret_text=="":
-                break
-            self.input_api_key_settings.setEnabled(False)
-            self.input_api_secret_key_settings.setEnabled(False)
-            db.set('api_key', line_text)
-            db.set('api_secret_key', line_secret_text)
-            db.dump()
-            break
-    def api_key_settings_reset(self):
-        db.deldb()
-
-        self.input_api_key_settings.setText("")
-        self.input_api_secret_key_settings.setText("")
-        self.input_api_key_settings.setEnabled(True)
-        self.input_api_secret_key_settings.setEnabled(True)
-    def control(self):
-        if db.get('api_key')!=False:
-            self.input_api_key_settings.setEnabled(False)
-            self.input_api_secret_key_settings.setEnabled(False)
+            elif tab==1:
+                pass
+        if 0==self.tabWidget.currentIndex():
+            threading.Thread(target=response_price, args=(0, 0)).start()
+            self.button_connect(tab=0)
+                # threading.Timer(0.2, response_price, args=(self.label_2, self.coin_price_combo,)).start()
         else:
-            self.input_api_key_settings.setEnabled(True)
-            self.input_api_secret_key_settings.setEnabled(True)
+            pass
+    def button_connect(self,tab=0):
+        if tab==0:
+            self.infobutton.clicked.connect(self.response_price_while_stopper)
 
-    def coin_price_reflesh_trade(self, text):
-        from config import x
-        i=0
-        while i<=2:
-            try:
-                arg=x.get_symbol_ticker(symbol=text)
-                threading.Thread(target=reflesh(arg, text)).start()
-                break
-            except:
-                i+=1
-            threading.Thread(target=time.sleep(0.15)).start()
+    def control(self):
+        self.cont_res_while=True
 
-        def reflesh(arg, text):
-            self.label_4.text(text + " : " + arg['price'])
+    def response_price_while_stopper(self):
+        self.cont_res_while=False
+        # self.coin_price_combo.setEditable(True)
+        self.infobutton.clicked.connect(self.info_price)
+        self.infobutton.setText("Coin Price")
 
+
+
+# class TimerThread(QThread):
+#     update = pyqtSignal()
+#
+#     def __init__(self, event):
+#         QThread.__init__(self)
+#         self.stopped = event
+#
+#     def run(self):
+#         while not self.stopped.wait(0.02):
+#             self.update.emit()
 
 
 

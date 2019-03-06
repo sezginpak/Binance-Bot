@@ -1,26 +1,15 @@
-# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'deneme.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
-
-
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtGui, QtWidgets, QtCore
 from tool_func import func
-
-
 
 class Ui_MainWindow(func):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(400, 275)
+        MainWindow.resize(400, 282)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 401, 231))
-
+        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 401, 261))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -29,30 +18,15 @@ class Ui_MainWindow(func):
         self.tabWidget.setFocusPolicy(QtCore.Qt.TabFocus)
         self.tabWidget.setToolTipDuration(-1)
         self.tabWidget.setObjectName("tabWidget")
-
         self.tab1 = QtWidgets.QWidget()
         self.tab1.setObjectName("tab1")
-
         self.infobutton = QtWidgets.QPushButton(self.tab1)
         self.infobutton.setGeometry(QtCore.QRect(40, 120, 101, 31))
         self.infobutton.setStyleSheet("")
         self.infobutton.setObjectName("infobutton")
-
-        self.inputcoininfo = QtWidgets.QLineEdit(self.tab1)
-        self.inputcoininfo.setGeometry(QtCore.QRect(30, 90, 121, 16))
-        self.inputcoininfo.setInputMethodHints(QtCore.Qt.ImhLatinOnly|QtCore.Qt.ImhPreferUppercase|QtCore.Qt.ImhUppercaseOnly)
-        self.inputcoininfo.setInputMask("")
-        self.inputcoininfo.setText("")
-        self.inputcoininfo.setMaxLength(8)
-        self.inputcoininfo.setDragEnabled(False)
-        self.inputcoininfo.setReadOnly(False)
-        self.inputcoininfo.setClearButtonEnabled(False)
-        self.inputcoininfo.setObjectName("inputcoininfo")
-
         self.label = QtWidgets.QLabel(self.tab1)
         self.label.setGeometry(QtCore.QRect(40, 60, 111, 21))
         self.label.setObjectName("label")
-
         self.maintext = QtWidgets.QLabel(self.tab1)
         self.maintext.setGeometry(QtCore.QRect(30, 10, 121, 31))
         font = QtGui.QFont()
@@ -62,15 +36,21 @@ class Ui_MainWindow(func):
         self.maintext.setAlignment(QtCore.Qt.AlignCenter)
         self.maintext.setWordWrap(False)
         self.maintext.setObjectName("maintext")
-
         self.label_2 = QtWidgets.QLabel(self.tab1)
-        self.label_2.setGeometry(QtCore.QRect(220, 70, 141, 31))
+        self.label_2.setGeometry(QtCore.QRect(190, 70, 171, 51))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.label_2.setFont(font)
         self.label_2.setText("")
         self.label_2.setObjectName("label_2")
+        self.coin_price_combo = QtWidgets.QComboBox(self.tab1)
+        self.coin_price_combo.setGeometry(QtCore.QRect(40, 90, 104, 26))
+        self.coin_price_combo.setEditable(True)
+        self.coin_price_combo.setMaxVisibleItems(50)
+        self.coin_price_combo.setObjectName("coin_price_combo")
         self.tabWidget.addTab(self.tab1, "")
         self.tab2 = QtWidgets.QWidget()
         self.tab2.setObjectName("tab2")
-
         self.input_coin_trade = QtWidgets.QLineEdit(self.tab2)
         self.input_coin_trade.setGeometry(QtCore.QRect(60, 90, 121, 16))
         self.input_coin_trade.setInputMethodHints(QtCore.Qt.ImhDigitsOnly)
@@ -81,25 +61,21 @@ class Ui_MainWindow(func):
         self.input_coin_trade.setReadOnly(False)
         self.input_coin_trade.setClearButtonEnabled(False)
         self.input_coin_trade.setObjectName("input_coin_trade")
-
         self.example_trade = QtWidgets.QLabel(self.tab2)
         self.example_trade.setGeometry(QtCore.QRect(50, 60, 111, 21))
         self.example_trade.setObjectName("example_trade")
-
-        self.infobutton_trade = QtWidgets.QPushButton(self.tab2)
-        self.infobutton_trade.setGeometry(QtCore.QRect(70, 150, 101, 31))
-        self.infobutton_trade.setStyleSheet("")
-        self.infobutton_trade.setObjectName("infobutton_trade")
+        self.trade_button_trade = QtWidgets.QPushButton(self.tab2)
+        self.trade_button_trade.setGeometry(QtCore.QRect(80, 150, 81, 31))
+        self.trade_button_trade.setStyleSheet("")
+        self.trade_button_trade.setObjectName("trade_button_trade")
         self.coin_price_trade = QtWidgets.QLabel(self.tab2)
-        self.coin_price_trade.setGeometry(QtCore.QRect(210, 60, 141, 31))
+        self.coin_price_trade.setGeometry(QtCore.QRect(210, 60, 161, 31))
         self.coin_price_trade.setText("")
         self.coin_price_trade.setObjectName("coin_price_trade")
-
         self.result_trade = QtWidgets.QLabel(self.tab2)
-        self.result_trade.setGeometry(QtCore.QRect(210, 120, 141, 31))
+        self.result_trade.setGeometry(QtCore.QRect(210, 120, 161, 31))
         self.result_trade.setText("")
         self.result_trade.setObjectName("result_trade")
-
         self.input_coin_count_trade = QtWidgets.QLineEdit(self.tab2)
         self.input_coin_count_trade.setGeometry(QtCore.QRect(60, 120, 121, 16))
         self.input_coin_count_trade.setInputMethodHints(QtCore.Qt.ImhDigitsOnly)
@@ -110,14 +86,12 @@ class Ui_MainWindow(func):
         self.input_coin_count_trade.setReadOnly(False)
         self.input_coin_count_trade.setClearButtonEnabled(False)
         self.input_coin_count_trade.setObjectName("input_coin_count_trade")
-
         self.label_3 = QtWidgets.QLabel(self.tab2)
         self.label_3.setGeometry(QtCore.QRect(0, 120, 57, 16))
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.tab2)
         self.label_4.setGeometry(QtCore.QRect(20, 90, 41, 20))
         self.label_4.setObjectName("label_4")
-
         self.maintext_2 = QtWidgets.QLabel(self.tab2)
         self.maintext_2.setGeometry(QtCore.QRect(40, 20, 141, 31))
         font = QtGui.QFont()
@@ -131,7 +105,6 @@ class Ui_MainWindow(func):
         self.tabWidget.addTab(self.tab2, "")
         self.tab3 = QtWidgets.QWidget()
         self.tab3.setObjectName("tab3")
-
         self.input_api_key_settings = QtWidgets.QLineEdit(self.tab3)
         self.input_api_key_settings.setGeometry(QtCore.QRect(110, 30, 251, 21))
         self.input_api_key_settings.setObjectName("input_api_key_settings")
@@ -150,14 +123,15 @@ class Ui_MainWindow(func):
         self.reset_button_settings = QtWidgets.QPushButton(self.tab3)
         self.reset_button_settings.setGeometry(QtCore.QRect(240, 90, 121, 32))
         self.reset_button_settings.setObjectName("reset_button_settings")
-
-
+        self.label_settings = QtWidgets.QLabel(self.tab3)
+        self.label_settings.setGeometry(QtCore.QRect(70, 160, 231, 31))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        self.label_settings.setFont(font)
+        self.label_settings.setText("")
+        self.label_settings.setObjectName("label_settings")
         self.tabWidget.addTab(self.tab3, "")
         #MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 400, 22))
-        self.menubar.setObjectName("menubar")
-        #MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         #MainWindow.setStatusBar(self.statusbar)
@@ -165,12 +139,11 @@ class Ui_MainWindow(func):
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         self.infobutton.clicked.connect(self.info_price)
-        self.infobutton_trade.clicked.connect(self.coin_price_trade.clear)
-        self.configure_button_settings.clicked.connect(self.api_key_settings_configure)
-        self.reset_button_settings.clicked.connect(self.api_key_settings_reset)
-        self.input_coin_trade.end
+        self.trade_button_trade.clicked.connect(self.coin_price_trade.clear)
+        # self.coin_price_combo.currentIndexChanged.connect(self.coin_price_reflesh_)
+        self.start_func()
+        self.control()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -178,9 +151,10 @@ class Ui_MainWindow(func):
         self.infobutton.setText(_translate("MainWindow", "Coin Price"))
         self.label.setText(_translate("MainWindow", "Example: HOTBTC"))
         self.maintext.setText(_translate("MainWindow", "Binance Bot"))
+        self.coin_price_combo.setCurrentText(_translate("MainWindow", "Select Coin"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab1), _translate("MainWindow", "Coin Price"))
         self.example_trade.setText(_translate("MainWindow", "Example: HOTBTC"))
-        self.infobutton_trade.setText(_translate("MainWindow", "Coin Price"))
+        self.trade_button_trade.setText(_translate("MainWindow", "Trade"))
         self.label_3.setText(_translate("MainWindow", "Amount :"))
         self.label_4.setText(_translate("MainWindow", "Coin :"))
         self.maintext_2.setText(_translate("MainWindow", "Market Buy"))
